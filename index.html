@@ -80,7 +80,6 @@ function streak(){
 }
 
 function renderToday(){
-  // lesson of the day = rotate by date
   const lesson=LESSONS[new Date().getDate()%LESSONS.length];
   $('panel').innerHTML=`<div class="card">
     <span class="tag">Today's focus</span>
@@ -125,7 +124,6 @@ function renderHistory(){
   $('panel').innerHTML=`<div class="card hist"><h2>Your reflections</h2><div id="hl"></div>${list.length?'<button class="btn ghost" id="exp" style="margin-top:14px">Export JSON</button>':''}</div>`;
   const hl=$('hl');
   if(!list.length){ hl.innerHTML='<div class="empty">No reflections yet — your daily check-ins will gather here, gently.</div>'; return; }
-  // looking back: last 7 days
   const weekAgo=Date.now()-7*864e5;
   const week=list.filter(r=>new Date(r.at).getTime()>=weekAgo);
   if(week.length){
@@ -150,5 +148,12 @@ function setTab(t){ document.querySelectorAll('.tab').forEach(x=>x.classList.tog
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>setTab(t.dataset.t));
 renderToday(); streak();
 </script>
+<script
+  src="https://cdn.jsdelivr.net/gh/joshualparris/JoshHub@35c4348b4adfbc1c64bad8a3d3e31ede008a4441/public/podcast-dock.js"
+  data-topics="relationships"
+  data-label="🎧 Listen to a different relationship-growth podcast"
+  data-quiet-on-input="true"
+  defer
+></script>
 </body>
 </html>
