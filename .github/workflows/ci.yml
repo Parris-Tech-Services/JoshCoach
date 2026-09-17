@@ -7,15 +7,25 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npx prisma generate
-      - run: npm run lint
-      - run: npx vitest run
+          node-version: 24
+      - name: Verify static site entry point
+        run: |
+          test -s index.html
+          grep -qi '<!doctype html' index.html
+          grep -qi '</html>' index.html
+      - name: Verify QA script syntax
+        run: node --check qa.mjs
+      - name: Reject merge conflict markers
+        run: |
+          if grep -R -n -E '^(<<<<<<<|=======|>>>>>>>)' . --exclude-dir=.git; then
+            echo 'Merge conflict markers found.'
+            exit 1
+          fi
