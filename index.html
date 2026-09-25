@@ -67,6 +67,11 @@ const LESSONS=[
   {t:'Enough for today', body:'You do not need to carry tomorrow\'s weight today.', prompt:'What can you set down until tomorrow?'},
   {t:'Notice one gift', body:'Gratitude re-trains attention toward what is already good.', prompt:'What is one small gift in today you almost missed?'},
   {t:'Rest is faithful too', body:'Stopping well is part of the work, not a failure of it.', prompt:'How will you rest, on purpose, today?'},
+  {t:'Embrace the messy middle', body:'Progress is rarely a straight line. It is okay if things feel unfinished right now.', prompt:'What part of your work feels messy, and how can you be okay with that today?'},
+  {t:'Listen to the quiet voice', body:'Our deepest needs often whisper rather than shout.', prompt:'What is the quietest part of you asking for today?'},
+  {t:'Forgive the misstep', body:'A stumble is just information, not an indictment of your worth.', prompt:'Where can you offer yourself some grace today?'},
+  {t:'Protect your peace', body:'You do not have to absorb every urgency that others carry.', prompt:'What boundary can you gently hold to protect your peace today?'},
+  {t:'The power of pause', body:'A pause is not a full stop; it is the space where clarity breathes.', prompt:'Where in your day can you deliberately pause for one minute?'}
 ];
 let chosenFeeling=null;
 function load(){ try{ return JSON.parse(localStorage.getItem(RKEY))||[]; }catch(e){ return []; } }
